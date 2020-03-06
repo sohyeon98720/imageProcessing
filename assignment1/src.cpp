@@ -6,25 +6,25 @@
 
 void main()
 {
-	BITMAPFILEHEADER hf; // BMP ∆ƒ¿œ«Ï¥ı 14Bytes
-	BITMAPINFOHEADER hInfo; // BMP ¿Œ∆˜«Ï¥ı 40Bytes
-	RGBQUAD hRGB[256]; // ∆»∑π∆Æ (256 * 4Bytes)
+	BITMAPFILEHEADER hf; // BMP ÌååÏùºÌó§Îçî 14Bytes
+	BITMAPINFOHEADER hInfo; // BMP Ïù∏Ìè¨Ìó§Îçî 40Bytes
+	RGBQUAD hRGB[256]; // ÌåîÎ†àÌä∏ (256 * 4Bytes)
 	FILE *fp;
 	fp = fopen("color1.bmp", "rb");
 	if (fp == NULL) return;
 	fread(&hf, sizeof(BITMAPFILEHEADER), 1, fp);
-	fread(&hInfo, sizeof(BITMAPINFOHEADER), 1, fp);//true color¥¬ ƒ√∑Ø∆»∑π∆Æ∞° « ø‰æ¯¥Ÿ.
+	fread(&hInfo, sizeof(BITMAPINFOHEADER), 1, fp);//true colorÎäî Ïª¨Îü¨ÌåîÎ†àÌä∏Í∞Ä ÌïÑÏöîÏóÜÎã§.
 	int ImgSize = hInfo.biWidth * hInfo.biHeight;
 	BYTE *Image;
 	BYTE *Output;
 
-	if (hInfo.biBitCount == 8) {//8 -> gray color¿Œ ∞ÊøÏ(=index color)
+	if (hInfo.biBitCount == 8) {//8 -> gray colorÏù∏ Í≤ΩÏö∞(=index color)
 		fread(hRGB, sizeof(RGBQUAD), 256, fp);
 		Image = (BYTE *)malloc(ImgSize);
 		Output = (BYTE *)malloc(ImgSize);
 		fread(Image, sizeof(BYTE), ImgSize, fp);
 	}
-	else {//24 -> true color¿Œ ∞ÊøÏ
+	else {//24 -> true colorÏù∏ Í≤ΩÏö∞
 		Image = (BYTE *)malloc(ImgSize*3);
 		Output = (BYTE *)malloc(ImgSize*3);
 		fread(Image, sizeof(BYTE), ImgSize*3, fp);
@@ -33,16 +33,16 @@ void main()
 	int W = hInfo.biWidth, H = hInfo.biHeight;
 
 
-	/*øµªÛ√≥∏Æ-1*/
-	//for (int i = 0;i < ImgSize*3;i++) {//BMP∆ƒ¿œ¿Ã±‚∂ßπÆø° BGRº¯¿∏∑Œ ≥™ø». //RGB∞° ¥„±‚±‚ ∂ßπÆø° W*Hø©µµ 3W*H∑Œ ª˝∞¢«œ±‚
+	/*ÏòÅÏÉÅÏ≤òÎ¶¨-1*/
+	//for (int i = 0;i < ImgSize*3;i++) {//BMPÌååÏùºÏù¥Í∏∞ÎïåÎ¨∏Ïóê BGRÏàúÏúºÎ°ú ÎÇòÏò¥. //RGBÍ∞Ä Îã¥Í∏∞Í∏∞ ÎïåÎ¨∏Ïóê W*HÏó¨ÎèÑ 3W*HÎ°ú ÏÉùÍ∞ÅÌïòÍ∏∞
 	//	Output[i] = Image[i];
 	//}
-	//for (int i = 0;i < ImgSize;i++) {//¿ßøÕ ∞∞¿∫ ƒ⁄µÂ
+	//for (int i = 0;i < ImgSize;i++) {//ÏúÑÏôÄ Í∞ôÏùÄ ÏΩîÎìú
 	//	Output[i * 3] = Image[i * 3];
 	//	Output[i * 3+1] = Image[i * 3+1];
 	//	Output[i * 3+2] = Image[i * 3+2];
 	//}
-	//for (int i = 0;i < H;i++) {//¿Ã∞Õµµ ∂»∞∞¿∫ ƒ⁄µÂ, 2¬˜ø¯¿∏∑Œ «•«ˆ«— ∞Õ
+	//for (int i = 0;i < H;i++) {//Ïù¥Í≤ÉÎèÑ ÎòëÍ∞ôÏùÄ ÏΩîÎìú, 2Ï∞®ÏõêÏúºÎ°ú ÌëúÌòÑÌïú Í≤É
 	//	for (int j = 0;j < W;j++) {
 	//		Output[i*W*3 + j*3] = Image[i*W*3 + j*3];//B
 	//		Output[i*W*3 + j*3+1] = Image[i*W*3 + j*3+1];//G
@@ -56,34 +56,34 @@ void main()
 	//}
 	//double weight;
 	//for (int j = 0;j < W;j++) {
-	//	weight = j / (double)(W - 1);//∞°¡ﬂ∆Ú±’
-	//	Output[H / 2 * W * 3 + j * 3] = (1-weight)*0+weight*255;//øﬁ¬ ¡Ÿºº∞≥ -> red, ø¿∏•¬ ¡Ÿºº∞≥ -> cyan
+	//	weight = j / (double)(W - 1);//Í∞ÄÏ§ëÌèâÍ∑†
+	//	Output[H / 2 * W * 3 + j * 3] = (1-weight)*0+weight*255;//ÏôºÏ™ΩÏ§ÑÏÑ∏Í∞ú -> red, Ïò§Î•∏Ï™ΩÏ§ÑÏÑ∏Í∞ú -> cyan
 	//	Output[H / 2 * W * 3 + j * 3 + 1] = (1 - weight) * 0 + weight * 255;
 	//	Output[H / 2 * W * 3 + j * 3 + 2] = (1 - weight) * 255 + weight * 0;
 	//}
 
-	/*øµªÛ√≥∏Æ-2*/
+	/*ÏòÅÏÉÅÏ≤òÎ¶¨-2*/
 	double weight;
 	for(int i=H/3*2;i<H;i++){
 		for (int j = 0;j < W;j++) {
-			weight = j / (double)(W - 1);//∞°¡ﬂ∆Ú±’
-			Output[i * W * 3 + j * 3] = (1 - weight) * 0 + weight * 255;//øﬁ¬ ¡Ÿºº∞≥ -> red, ø¿∏•¬ ¡Ÿºº∞≥ -> cyan
+			weight = j / (double)(W - 1);//Í∞ÄÏ§ëÌèâÍ∑†
+			Output[i * W * 3 + j * 3] = (1 - weight) * 0 + weight * 255;//ÏôºÏ™ΩÏ§ÑÏÑ∏Í∞ú -> red, Ïò§Î•∏Ï™ΩÏ§ÑÏÑ∏Í∞ú -> cyan
 			Output[i * W * 3 + j * 3 + 1] = (1 - weight) * 0 + weight * 255;
 			Output[i * W * 3 + j * 3 + 2] = (1 - weight) * 255 + weight * 0;
 		}
 	}
 	for (int i = H / 3;i < H / 3 * 2;i++) {
 		for (int j = 0;j < W;j++) {
-			weight = j / (double)(W - 1);//∞°¡ﬂ∆Ú±’
-			Output[i * W * 3 + j * 3] = (1 - weight) * 0 + weight * 255;//øﬁ¬ ¡Ÿºº∞≥ -> green, ø¿∏•¬ ¡Ÿºº∞≥ -> magenta
+			weight = j / (double)(W - 1);//Í∞ÄÏ§ëÌèâÍ∑†
+			Output[i * W * 3 + j * 3] = (1 - weight) * 0 + weight * 255;//ÏôºÏ™ΩÏ§ÑÏÑ∏Í∞ú -> green, Ïò§Î•∏Ï™ΩÏ§ÑÏÑ∏Í∞ú -> magenta
 			Output[i * W * 3 + j * 3 + 1] = (1 - weight) * 255 + weight * 0;
 			Output[i * W * 3 + j * 3 + 2] = (1 - weight) * 0 + weight * 255;
 		}
 	}	
 	for (int i = 0;i < H/3;i++) {
 		for (int j = 0;j < W;j++) {
-			weight = j / (double)(W - 1);//∞°¡ﬂ∆Ú±’
-			Output[i * W * 3 + j * 3] = (1 - weight) * 255 + weight * 0;//øﬁ¬ ¡Ÿºº∞≥ -> blue, ø¿∏•¬ ¡Ÿºº∞≥ -> yellow
+			weight = j / (double)(W - 1);//Í∞ÄÏ§ëÌèâÍ∑†
+			Output[i * W * 3 + j * 3] = (1 - weight) * 255 + weight * 0;//ÏôºÏ™ΩÏ§ÑÏÑ∏Í∞ú -> blue, Ïò§Î•∏Ï™ΩÏ§ÑÏÑ∏Í∞ú -> yellow
 			Output[i * W * 3 + j * 3 + 1] = (1 - weight) * 0 + weight * 255;
 			Output[i * W * 3 + j * 3 + 2] = (1 - weight) * 0 + weight * 255;
 		}

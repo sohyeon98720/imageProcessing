@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include <Windows.h>
-#define SIZE 3
 
 void main()
 {

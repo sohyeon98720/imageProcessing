@@ -52,7 +52,7 @@ int DetermThreshold(BYTE *Img, int *Histo,int W, int H) {
 		}
 	}
 	int average = (max + min) / 2;
-	printf("ÃÊ±â ÀÓ°è°ªÀº : %d\n", average);
+	printf("ì´ˆê¸° ì„ê³„ê°’ì€ : %d\n", average);
 	threshold = average;
 
 	for (int i = 0;i < Size;i++) {
@@ -68,7 +68,7 @@ int DetermThreshold(BYTE *Img, int *Histo,int W, int H) {
 	average1 = G1 / G11;
 	average2 = G2 / G22;
 	threshold_new = (average1 + average2) / 2;
-	printf("°»½Å ÀÓ°è°ªÀº : %d\n", threshold_new);
+	printf("ê°±ì‹  ì„ê³„ê°’ì€ : %d\n", threshold_new);
 
 	while (threshold - threshold_new > 3 || threshold - threshold_new < -3) {
 		threshold = threshold_new;
@@ -87,7 +87,7 @@ int DetermThreshold(BYTE *Img, int *Histo,int W, int H) {
 		average1 = G1 / G11;
 		average2 = G2 / G22;
 		threshold_new = (average1 + average2) / 2;
-		printf("°»½Å ÀÓ°è°ªÀº : %d\n", threshold_new);
+		printf("ê°±ì‹  ì„ê³„ê°’ì€ : %d\n", threshold_new);
 	}
 	return threshold_new;
 }
@@ -95,9 +95,9 @@ int DetermThreshold(BYTE *Img, int *Histo,int W, int H) {
 
 void main()
 {
-	BITMAPFILEHEADER hf; // BMP ÆÄÀÏÇì´õ 14Bytes
-	BITMAPINFOHEADER hInfo; // BMP ÀÎÆ÷Çì´õ 40Bytes
-	RGBQUAD hRGB[256]; // ÆÈ·¹Æ® (256 * 4Bytes)
+	BITMAPFILEHEADER hf; // BMP íŒŒì¼í—¤ë” 14Bytes
+	BITMAPINFOHEADER hInfo; // BMP ì¸í¬í—¤ë” 40Bytes
+	RGBQUAD hRGB[256]; // íŒ”ë ˆíŠ¸ (256 * 4Bytes)
 	FILE *fp;
 	fp = fopen("coin.bmp", "rb");
 	if (fp == NULL) return;
@@ -109,15 +109,13 @@ void main()
 	BYTE * Output = (BYTE *)malloc(ImgSize);
 	fread(Image, sizeof(BYTE), ImgSize, fp);
 	fclose(fp);
-	/* ¿µ»óÃ³¸® */
+	/* ì˜ìƒì²˜ë¦¬ */
 	int Histo[256] = { 0 };
 	int total_Threshold = DetermThreshold(Image, Histo, hInfo.biWidth, hInfo.biHeight);
 	ObtainHisto(Image, Histo, hInfo.biWidth, hInfo.biHeight);
 	Binarization(Image, Output, total_Threshold, hInfo.biWidth, hInfo.biHeight);
 
 	
-
-
 
 	fp = fopen("output.bmp", "wb");
 	fwrite(&hf, sizeof(BYTE), sizeof(BITMAPFILEHEADER), fp);

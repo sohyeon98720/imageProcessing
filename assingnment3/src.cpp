@@ -33,7 +33,7 @@ int pop(short *stackx, short *stacky, short *vx, short *vy, int *top)
 	(*top)--;
 	return(1);
 }
-// GlassFire ¾Ë°í¸®ÁòÀ» ÀÌ¿ëÇÑ ¶óº§¸µ ÇÔ¼ö
+// GlassFire ì•Œê³ ë¦¬ì¦˜ì„ ì´ìš©í•œ ë¼ë²¨ë§ í•¨ìˆ˜
 void m_BlobColoring(BYTE* CutImage, int height, int width)
 {
 	int i, j, m, n, top, area, Out_Area, index, BlobArea[1000];
@@ -43,23 +43,23 @@ void m_BlobColoring(BYTE* CutImage, int height, int width)
 	Out_Area = 1;
 
 
-	// ½ºÅÃÀ¸·Î »ç¿ëÇÒ ¸Ş¸ğ¸® ÇÒ´ç
+	// ìŠ¤íƒìœ¼ë¡œ ì‚¬ìš©í•  ë©”ëª¨ë¦¬ í• ë‹¹
 	short* stackx = new short[height*width];
 	short* stacky = new short[height*width];
 	short* coloring = new short[height*width];
 
 	int arr_size = height * width;
 
-	// ¶óº§¸µµÈ ÇÈ¼¿À» ÀúÀåÇÏ±â À§ÇØ ¸Ş¸ğ¸® ÇÒ´ç
+	// ë¼ë²¨ë§ëœ í”½ì…€ì„ ì €ì¥í•˜ê¸° ìœ„í•´ ë©”ëª¨ë¦¬ í• ë‹¹
 
-	for (k = 0; k<height*width; k++) coloring[k] = 0;  // ¸Ş¸ğ¸® ÃÊ±âÈ­
+	for (k = 0; k<height*width; k++) coloring[k] = 0;  // ë©”ëª¨ë¦¬ ì´ˆê¸°í™”
 
 	for (i = 0; i<height; i++)
 	{
 		index = i*width;
 		for (j = 0; j<width; j++)
 		{
-			// ÀÌ¹Ì ¹æ¹®ÇÑ Á¡ÀÌ°Å³ª ÇÈ¼¿°ªÀÌ 255°¡ ¾Æ´Ï¶ó¸é Ã³¸® ¾ÈÇÔ
+			// ì´ë¯¸ ë°©ë¬¸í•œ ì ì´ê±°ë‚˜ í”½ì…€ê°’ì´ 255ê°€ ì•„ë‹ˆë¼ë©´ ì²˜ë¦¬ ì•ˆí•¨
 			if (coloring[index + j] != 0 || CutImage[index + j] != 255) continue;
 			r = i; c = j; top = 0; area = 1;
 			curColor++;
@@ -72,12 +72,12 @@ void m_BlobColoring(BYTE* CutImage, int height, int width)
 					index = m*width;
 					for (n = c - 1; n <= c + 1; n++)
 					{
-						//°ü½É ÇÈ¼¿ÀÌ ¿µ»ó°æ°è¸¦ ¹ş¾î³ª¸é Ã³¸® ¾ÈÇÔ
+						//ê´€ì‹¬ í”½ì…€ì´ ì˜ìƒê²½ê³„ë¥¼ ë²—ì–´ë‚˜ë©´ ì²˜ë¦¬ ì•ˆí•¨
 						if (m<0 || m >= height || n<0 || n >= width) continue;
 
 						if ((int)CutImage[index + n] == 255 && coloring[index + n] == 0)
 						{
-							coloring[index + n] = curColor; // ÇöÀç ¶óº§·Î ¸¶Å©
+							coloring[index + n] = curColor; // í˜„ì¬ ë¼ë²¨ë¡œ ë§ˆí¬
 							if (push(stackx, stacky, arr_size, (short)m, (short)n, &top) == -1) continue;
 							r = m; c = n; area++;
 							goto GRASSFIRE;
@@ -92,18 +92,18 @@ void m_BlobColoring(BYTE* CutImage, int height, int width)
 
 	float grayGap = 255.0f / (float)curColor;
 
-	// °¡Àå ¸éÀûÀÌ ³ĞÀº ¿µ¿ªÀ» Ã£¾Æ³»±â À§ÇÔ 
+	// ê°€ì¥ ë©´ì ì´ ë„“ì€ ì˜ì—­ì„ ì°¾ì•„ë‚´ê¸° ìœ„í•¨ 
 	for(i=1; i<=curColor; i++)
 	{
 		if(BlobArea[i]>=BlobArea[Out_Area]) Out_Area = i;
 	}
-	// CutImage ¹è¿­ Å¬¸®¾î~
+	// CutImage ë°°ì—´ í´ë¦¬ì–´~
 	for (k = 0; k < width*height; k++) CutImage[k] = 255;
 
-	// coloring¿¡ ÀúÀåµÈ ¶óº§¸µ °á°úÁß (Out_Area¿¡ ÀúÀåµÈ) ¿µ¿ªÀÌ °¡Àå Å« °Í¸¸ CutImage¿¡ ÀúÀå
+	// coloringì— ì €ì¥ëœ ë¼ë²¨ë§ ê²°ê³¼ì¤‘ (Out_Areaì— ì €ì¥ëœ) ì˜ì—­ì´ ê°€ì¥ í° ê²ƒë§Œ CutImageì— ì €ì¥
 	for (k = 0; k < width*height; k++)
 	{
-		if(coloring[k] == Out_Area) CutImage[k] = 0;  // °¡Àå Å« °Í¸¸ ÀúÀå
+		if(coloring[k] == Out_Area) CutImage[k] = 0;  // ê°€ì¥ í° ê²ƒë§Œ ì €ì¥
 		//CutImage[k] = (unsigned char)(coloring[k] * grayGap);
 	}
 
@@ -111,7 +111,7 @@ void m_BlobColoring(BYTE* CutImage, int height, int width)
 	delete[] stackx;
 	delete[] stacky;
 }
-// ¶óº§¸µ ÈÄ °¡Àå ³ĞÀº ¿µ¿ª¿¡ ´ëÇØ¼­¸¸ »Ì¾Æ³»´Â ÄÚµå Æ÷ÇÔ
+// ë¼ë²¨ë§ í›„ ê°€ì¥ ë„“ì€ ì˜ì—­ì— ëŒ€í•´ì„œë§Œ ë½‘ì•„ë‚´ëŠ” ì½”ë“œ í¬í•¨
 void findCenter(BYTE*Input,BYTE*Output,int W, int H) {
 	int x = 0;
 	int y = 0;
@@ -124,11 +124,11 @@ void findCenter(BYTE*Input,BYTE*Output,int W, int H) {
 				count++;
 			}
 		}
-	}//µ¿°øºÎºĞ¿¡¼­ x,yÁÂÇ¥ ±¸ÇÏ±â
+	}//ë™ê³µë¶€ë¶„ì—ì„œ x,yì¢Œí‘œ êµ¬í•˜ê¸°
 	x = x / count;
-	y = y / count;//¹«°ÔÁß½É ±¸ÇÏ±â
-	cout << "xÁÂÇ¥´Â" << x << endl;
-	cout << "yÁÂÇ¥´Â" << y << endl;
+	y = y / count;//ë¬´ê²Œì¤‘ì‹¬ êµ¬í•˜ê¸°
+	cout << "xì¢Œí‘œëŠ”" << x << endl;
+	cout << "yì¢Œí‘œëŠ”" << y << endl;
 
 	for (int i = 0;i < H - 1;i++) {
 		for (int j = 0;j < W - 1;j++) {
@@ -136,14 +136,14 @@ void findCenter(BYTE*Input,BYTE*Output,int W, int H) {
 				Input[(i*W) + j] = 255;
 			}
 		}
-	}//¹«°ÔÁß½É x,y¸¦ ±âÁØÀ¸·Î ¼±±×¸®±â
+	}//ë¬´ê²Œì¤‘ì‹¬ x,yë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì„ ê·¸ë¦¬ê¸°
 }
 
 void main()
 {
-	BITMAPFILEHEADER hf; // BMP ÆÄÀÏÇì´õ 14Bytes
-	BITMAPINFOHEADER hInfo; // BMP ÀÎÆ÷Çì´õ 40Bytes
-	RGBQUAD hRGB[256]; // ÆÈ·¹Æ® (256 * 4Bytes)
+	BITMAPFILEHEADER hf; // BMP íŒŒì¼í—¤ë” 14Bytes
+	BITMAPINFOHEADER hInfo; // BMP ì¸í¬í—¤ë” 40Bytes
+	RGBQUAD hRGB[256]; // íŒ”ë ˆíŠ¸ (256 * 4Bytes)
 	FILE *fp;
 	fp = fopen("pupil2.bmp", "rb");
 	if (fp == NULL) return;
@@ -157,12 +157,12 @@ void main()
 	fclose(fp);
 	int W = hInfo.biWidth, H = hInfo.biHeight;
 
-	/* ¿µ»óÃ³¸® */
+	/* ì˜ìƒì²˜ë¦¬ */
 	Binarization(Image, Output, 50, W, H);
 	for (int i = 0; i < ImgSize; i++) Output[i] = 255 - Output[i];
 	m_BlobColoring(Output, H, W);
 	findCenter(Image,Output,W,H);
-	/* ¿µ»óÃ³¸® */
+	/* ì˜ìƒì²˜ë¦¬ */
 
 	fp = fopen("output_pupil2.bmp", "wb");
 	fwrite(&hf, sizeof(BYTE), sizeof(BITMAPFILEHEADER), fp);

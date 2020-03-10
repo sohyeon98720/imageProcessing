@@ -4,7 +4,7 @@
 #include <Windows.h>
 #define SIZE 3
 
-//±âÁ¸ ÀÌÁøÈ­ ÄÚµå. Binarization_face ÇÔ¼ö¿Í ºñ±³¹Ù¶÷.
+//ê¸°ì¡´ ì´ì§„í™” ì½”ë“œ. Binarization_face í•¨ìˆ˜ì™€ ë¹„êµë°”ëŒ.
 //void Binarization(BYTE * In, BYTE * Out, int Th, int W, int H)
 //{
 //	int Size = W * H;
@@ -37,12 +37,13 @@ void Binarization_face(BYTE * In, BYTE * Out, int W, int H)
 		}
 	}
 }
-void drawRed(BYTE *Image,BYTE *Output, int W, int H) {//¿ÜÁ¢ÇÏ´Â »ç°¢Çü ±×¸®±â
+
+void drawRed(BYTE *Image,BYTE *Output, int W, int H) {//ì™¸ì ‘í•˜ëŠ” ì‚¬ê°í˜• ê·¸ë¦¬ê¸°
 	int up_x = 0,up_y=0;
 	int down_x = 0,down_y=0;
 	int left_x = 9999, left_y = 0;
 	int right_x = 0,right_y=0;
-	for (int i = 1;i < H-1;i++) {//±×³É ÀÌÁøÈ­ÇÑ »çÁø¿¡ ¿ŞÂÊ ¸ÇÀ§¿¡ ÇÈ¼¿°ªÀÌ 255¿©¼­ ¿ø·¡´Â 0ºÎÅÍ ½ÃÀÛÇŞÁö¸¸ 1·Î ¹Ù²Ş ¤Ğ¤Ğ
+	for (int i = 1;i < H-1;i++) {//ê·¸ëƒ¥ ì´ì§„í™”í•œ ì‚¬ì§„ì— ì™¼ìª½ ë§¨ìœ„ì— í”½ì…€ê°’ì´ 255ì—¬ì„œ ì›ë˜ëŠ” 0ë¶€í„° ì‹œì‘í–‡ì§€ë§Œ 1ë¡œ ë°”ê¿ˆ ã… ã… 
 		for (int j = 1;j < W-1;j++) {
 			if (Output[i*W * 3 + j * 3] == 255) {
 				up_x = j * 3;
@@ -105,11 +106,12 @@ void drawRed(BYTE *Image,BYTE *Output, int W, int H) {//¿ÜÁ¢ÇÏ´Â »ç°¢Çü ±×¸®±â
 		}
 	}
 }
+
 void main()
 {
-	BITMAPFILEHEADER hf; // BMP ÆÄÀÏÇì´õ 14Bytes
-	BITMAPINFOHEADER hInfo; // BMP ÀÎÆ÷Çì´õ 40Bytes
-	RGBQUAD hRGB[256]; // ÆÈ·¹Æ® (256 * 4Bytes)
+	BITMAPFILEHEADER hf; // BMP íŒŒì¼í—¤ë” 14Bytes
+	BITMAPINFOHEADER hInfo; // BMP ì¸í¬í—¤ë” 40Bytes
+	RGBQUAD hRGB[256]; // íŒ”ë ˆíŠ¸ (256 * 4Bytes)
 	FILE *fp;
 	fp = fopen("face.bmp", "rb");
 	if (fp == NULL) return;
@@ -124,7 +126,7 @@ void main()
 		Output = (BYTE *)malloc(ImgSize);
 		fread(Image, sizeof(BYTE), ImgSize, fp);
 	}
-	else { // Æ®·çÄÃ·¯ÀÎ°æ¿ì
+	else { // íŠ¸ë£¨ì»¬ëŸ¬ì¸ê²½ìš°
 		Image = (BYTE *)malloc(ImgSize*3);
 		Output = (BYTE *)malloc(ImgSize*3);
 		fread(Image, sizeof(BYTE), ImgSize*3, fp);

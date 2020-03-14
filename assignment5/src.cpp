@@ -37,7 +37,7 @@ int DetermThreshold(BYTE *Img, int W, int H) {
 		}
 	}
 	int average = (max + min) / 2;
-	printf("ÃÊ±â ÀÓ°è°ªÀº : %d\n", average);
+	printf("ì´ˆê¸° ì„ê³„ê°’ì€ : %d\n", average);
 	threshold = average;
 
 	for (int i = 0;i < Size;i++) {
@@ -53,7 +53,7 @@ int DetermThreshold(BYTE *Img, int W, int H) {
 	average1 = G1 / G11;
 	average2 = G2 / G22;
 	threshold_new = (average1 + average2) / 2;
-	printf("°»½Å ÀÓ°è°ªÀº : %d\n", threshold_new);
+	printf("ê°±ì‹  ì„ê³„ê°’ì€ : %d\n", threshold_new);
 
 	while (threshold - threshold_new > 3 || threshold - threshold_new < -3) {
 		threshold = threshold_new;
@@ -72,7 +72,7 @@ int DetermThreshold(BYTE *Img, int W, int H) {
 		average1 = G1 / G11;
 		average2 = G2 / G22;
 		threshold_new = (average1 + average2) / 2;
-		printf("°»½Å ÀÓ°è°ªÀº : %d\n", threshold_new);
+		printf("ê°±ì‹  ì„ê³„ê°’ì€ : %d\n", threshold_new);
 	}
 	return threshold_new;
 }
@@ -87,10 +87,10 @@ void LowPassFilter(BYTE * Image, BYTE * Output, double* m,
 	for (int i = 0; i < SIZE*SIZE; i++) 
 		Mask[i / S][i%S] = m[i];
 	double temp = 0.0;
-	for (int i = Margin; i < H - Margin; i++) { // ¸¶½ºÅ© Áß¾ÓÀÇ ¼¼·Î¹æÇâ ÀÌµ¿
-		for (int j = Margin; j < W - Margin; j++) { // ¸¶½ºÅ© Áß¾ÓÀÇ °¡·Î¹æÇâ ÀÌµ¿
-			for (int m = -Margin; m <= Margin; m++) { // ¸¶½ºÅ© Áß¾Ó ±âÁØ ¼¼·Î¹æÇâ ÁÖº¯È­¼Ò Á¢±Ù
-				for (int n = -Margin; n <= Margin; n++) { // ¸¶½ºÅ© Áß¾Ó ±âÁØ °¡·Î¹æÇâ ÁÖº¯È­¼Ò Á¢±Ù
+	for (int i = Margin; i < H - Margin; i++) { // ë§ˆìŠ¤í¬ ì¤‘ì•™ì˜ ì„¸ë¡œë°©í–¥ ì´ë™
+		for (int j = Margin; j < W - Margin; j++) { // ë§ˆìŠ¤í¬ ì¤‘ì•™ì˜ ê°€ë¡œë°©í–¥ ì´ë™
+			for (int m = -Margin; m <= Margin; m++) { // ë§ˆìŠ¤í¬ ì¤‘ì•™ ê¸°ì¤€ ì„¸ë¡œë°©í–¥ ì£¼ë³€í™”ì†Œ ì ‘ê·¼
+				for (int n = -Margin; n <= Margin; n++) { // ë§ˆìŠ¤í¬ ì¤‘ì•™ ê¸°ì¤€ ê°€ë¡œë°©í–¥ ì£¼ë³€í™”ì†Œ ì ‘ê·¼
 					temp += (Image[(i + m)*W + (j + n)] * Mask[m + Margin][n + Margin]);
 				}
 			}
@@ -107,10 +107,10 @@ void HighPassFilter(BYTE * Image, BYTE * Output, int* m,
 	for (int i = 0; i < SIZE*SIZE; i++)
 		Mask[i / SIZE][i%SIZE] = m[i];
 	int temp = 0;
-	for (int i = Margin; i < H - Margin; i++) { // ¸¶½ºÅ© Áß¾ÓÀÇ ¼¼·Î¹æÇâ ÀÌµ¿
-		for (int j = Margin; j < W - Margin; j++) { // ¸¶½ºÅ© Áß¾ÓÀÇ °¡·Î¹æÇâ ÀÌµ¿
-			for (int m = -Margin; m <= Margin; m++) { // ¸¶½ºÅ© Áß¾Ó ±âÁØ ¼¼·Î¹æÇâ ÁÖº¯È­¼Ò Á¢±Ù
-				for (int n = -Margin; n <= Margin; n++) { // ¸¶½ºÅ© Áß¾Ó ±âÁØ °¡·Î¹æÇâ ÁÖº¯È­¼Ò Á¢±Ù
+	for (int i = Margin; i < H - Margin; i++) { // ë§ˆìŠ¤í¬ ì¤‘ì•™ì˜ ì„¸ë¡œë°©í–¥ ì´ë™
+		for (int j = Margin; j < W - Margin; j++) { // ë§ˆìŠ¤í¬ ì¤‘ì•™ì˜ ê°€ë¡œë°©í–¥ ì´ë™
+			for (int m = -Margin; m <= Margin; m++) { // ë§ˆìŠ¤í¬ ì¤‘ì•™ ê¸°ì¤€ ì„¸ë¡œë°©í–¥ ì£¼ë³€í™”ì†Œ ì ‘ê·¼
+				for (int n = -Margin; n <= Margin; n++) { // ë§ˆìŠ¤í¬ ì¤‘ì•™ ê¸°ì¤€ ê°€ë¡œë°©í–¥ ì£¼ë³€í™”ì†Œ ì ‘ê·¼
 					temp += (Image[(i + m)*W + (j + n)] * Mask[m + Margin][n + Margin]);
 				}
 			}
@@ -122,9 +122,9 @@ void HighPassFilter(BYTE * Image, BYTE * Output, int* m,
 
 void main()
 {
-	BITMAPFILEHEADER hf; // BMP ÆÄÀÏÇì´õ 14Bytes
-	BITMAPINFOHEADER hInfo; // BMP ÀÎÆ÷Çì´õ 40Bytes
-	RGBQUAD hRGB[256]; // ÆÈ·¹Æ® (256 * 4Bytes)
+	BITMAPFILEHEADER hf; // BMP íŒŒì¼í—¤ë” 14Bytes
+	BITMAPINFOHEADER hInfo; // BMP ì¸í¬í—¤ë” 40Bytes
+	RGBQUAD hRGB[256]; // íŒ”ë ˆíŠ¸ (256 * 4Bytes)
 	FILE *fp;
 	fp = fopen("LENNA.bmp", "rb");
 	if (fp == NULL) return;
@@ -139,7 +139,7 @@ void main()
 	BYTE * save3 = (BYTE *)malloc(ImgSize);
 	fread(Image, sizeof(BYTE), ImgSize, fp);
 	fclose(fp);
-	/* ¿µ»óÃ³¸® */
+	/* ì˜ìƒì²˜ë¦¬ */
 
 	int Threshold = 0;
 	int m[SIZE*SIZE] = { -1, -2, -1,
@@ -159,7 +159,7 @@ void main()
 	Threshold=DetermThreshold(save3, hInfo.biWidth, hInfo.biHeight);
 	Binarization(save3, Output, Threshold, hInfo.biWidth, hInfo.biHeight);
 
-	/* ¿µ»óÃ³¸® */
+	/* ì˜ìƒì²˜ë¦¬ */
 	fp = fopen("output___.bmp", "wb");
 	fwrite(&hf, sizeof(BYTE), sizeof(BITMAPFILEHEADER), fp);
 	fwrite(&hInfo, sizeof(BYTE), sizeof(BITMAPINFOHEADER), fp);

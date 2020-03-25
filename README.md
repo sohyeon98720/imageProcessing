@@ -9,9 +9,11 @@
 ---------------
 
 - 과제 1 에 대한 설명 : 픽셀값에 변화를 주어 그라데이션 만들기                   
-[입력영상]                                                                 
-<img src="https://user-images.githubusercontent.com/47767202/77510747-ccf40680-6eb2-11ea-8fa7-42fb4183f7e9.jpg" width="40%">
+> __입력영상__                                                                 
+> <img src="https://user-images.githubusercontent.com/47767202/77510747-ccf40680-6eb2-11ea-8fa7-42fb4183f7e9.jpg" width="40%">
 <br>
+> __출력영상__
+> ㅇㅇㄴㄹㄴㄹㄹ
 
 ----------------
 

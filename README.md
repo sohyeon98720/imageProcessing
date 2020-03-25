@@ -8,15 +8,20 @@
 
 ---------------
 
-- __과제 1 에 대한 설명 : 픽셀값에 변화를 주어 그라데이션 만들기__                        
+- __과제 1 에 대한 설명 : 픽셀값에 변화를 주어 그라데이션 만들기__   
+
 > __입력영상__   (아래의 영상을 꼭 입력영상으로 지정할 필요는 없음)                                                              
 > <img src="https://user-images.githubusercontent.com/47767202/77510747-ccf40680-6eb2-11ea-8fa7-42fb4183f7e9.jpg" width="30%">
+
 <br>
-> __출력영상__ (둘 중 하나)                                       
+
+> __출력영상__ (둘 중 하나)                                            
 > <img src="https://user-images.githubusercontent.com/47767202/77511173-da5dc080-6eb3-11ea-9b70-be14ef69019f.jpg" width="30%">    
 > <img src="https://user-images.githubusercontent.com/47767202/77511330-36284980-6eb4-11ea-9812-096d4246536d.jpg" width="30%">
 <br>
+
 ----------------
+
 - __과제 2 에 대한 설명 : 곤잘레스 임계값 구현하기__
 
 - __과제 3 에 대한 설명 : 눈 사진에서 동공 좌표의 중심 구하기__

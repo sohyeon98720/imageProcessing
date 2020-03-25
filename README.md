@@ -10,11 +10,11 @@
 
 - 과제 1 에 대한 설명 : 픽셀값에 변화를 주어 그라데이션 만들기                   
 > __입력영상__                                                                 
-> <img src="https://user-images.githubusercontent.com/47767202/77510747-ccf40680-6eb2-11ea-8fa7-42fb4183f7e9.jpg" width="40%">
+> <img src="https://user-images.githubusercontent.com/47767202/77510747-ccf40680-6eb2-11ea-8fa7-42fb4183f7e9.jpg" width="30%">
 <br>
 > __출력영상__
-> ㅇㅇㄴㄹㄴㄹㄹ
-
+> <img src="https://user-images.githubusercontent.com/47767202/77511173-da5dc080-6eb3-11ea-9b70-be14ef69019f.jpg" width="30%">
+<br>
 ----------------
 
 - 과제 2 에 대한 설명 : 곤잘레스 임계값 구현하기

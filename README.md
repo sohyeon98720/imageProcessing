@@ -14,8 +14,7 @@
 <br>
 
 > __출력영상__ (둘 중 하나)                                       
-> <img src="https://user-images.githubusercontent.com/47767202/77511173-da5dc080-6eb3-11ea-9b70-be14ef69019f.jpg" width="30%">
-<br>
+> <img src="https://user-images.githubusercontent.com/47767202/77511173-da5dc080-6eb3-11ea-9b70-be14ef69019f.jpg" width="30%">    
 > <img src="https://user-images.githubusercontent.com/47767202/77511330-36284980-6eb4-11ea-9812-096d4246536d.jpg" width="30%">
 <br>
 ----------------

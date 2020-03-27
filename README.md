@@ -30,6 +30,17 @@
 
 #### __과제 2 에 대한 설명 : 곤잘레스 임계값 구현하기__
 
+> __입력영상__                                   
+> <img src="https://user-images.githubusercontent.com/47767202/77720671-f1272300-702b-11ea-9404-92a55740510a.jpg" width="30%">
+
+<br>
+
+> __출력영상__                         
+> <img src="https://user-images.githubusercontent.com/47767202/77720770-39464580-702c-11ea-8291-64158e8c5be9.jpg" width="30%">
+<br>
+
+---------------
+
 - __과제 3 에 대한 설명 : 눈 사진에서 동공 좌표의 중심 구하기__
 
 - __과제 4 에 대한 설명 : RGB를 yCbCr로 변환 후 피부영역 검출하기__

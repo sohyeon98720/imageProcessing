@@ -43,6 +43,19 @@
 
 #### __과제 3 에 대한 설명 : 눈 사진에서 동공 좌표의 중심 구하기__
 
+> __입력영상__                                 
+> <img src="https://user-images.githubusercontent.com/47767202/78160201-8d16bb80-747e-11ea-84bb-c57c11c2e2fe.jpg" width="30%">
+
+<br>
+
+> __출력영상__                                          
+> <img src="https://user-images.githubusercontent.com/47767202/78160325-bc2d2d00-747e-11ea-95ba-dda439f9875b.jpg" width="30%">   
+<br>
+
+-----------------
+
 #### __과제 4 에 대한 설명 : RGB를 yCbCr로 변환 후 피부영역 검출하기__
+
+----------------
 
 #### __과제 5 에 대한 설명 : sobel 엣지검출 구현하기__

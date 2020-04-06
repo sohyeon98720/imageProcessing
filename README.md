@@ -55,7 +55,21 @@
 -----------------
 
 #### __과제 4 에 대한 설명 : RGB를 yCbCr로 변환 후 피부영역 검출하기__
+> __입력영상__                                                                                 
+> <img src="https://user-images.githubusercontent.com/47767202/78519399-30a8f880-77fe-11ea-976c-5bfdf4ba4ff9.jpg" width="30%">                    
+<br>
+ 
+> __출력영상__                                                                           
+> <img src="https://user-images.githubusercontent.com/47767202/78519449-546c3e80-77fe-11ea-9509-801a9f678023.jpg" width="30%">                
+<br>
 
 ----------------
 
 #### __과제 5 에 대한 설명 : sobel 엣지검출 구현하기__
+> __입력영상__                                                              
+> <img src="https://user-images.githubusercontent.com/47767202/78519556-bf1d7a00-77fe-11ea-9480-78a8b2dcf430.jpg" width="30%">
+
+<br>
+ 
+> __출력영상__                                                            
+> <img src="https://user-images.githubusercontent.com/47767202/78519572-cd6b9600-77fe-11ea-8050-afcb68de82e4.jpg" width="30%">
